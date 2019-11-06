@@ -2,4 +2,4 @@
 ## Client Side Rendering
 Antes de empezar con ssr es bueno entender como funciona el csr
 
-![csr](../md/csr-1.jpg)
+![csr](./md/csr-1.jpg)
