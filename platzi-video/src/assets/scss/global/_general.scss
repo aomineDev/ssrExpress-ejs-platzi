@@ -1,0 +1,29 @@
+// GENERAL
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+::selection {
+	background-color: transparent;
+	text-shadow: 0 0 2px $blue;
+}
+body {
+	font-family: $muli;
+	color: $light;
+	@extend %scroll;
+}
+
+// Images
+img {
+	width: 100%;
+	display: block;
+}
+
+// Button & ancla
+button,
+a {
+	cursor: pointer;
+	@extend %tap-highlight;
+}
