@@ -44,10 +44,6 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        test: /\.html$/i,
-        use: 'html-loader',
-      },
-      {
         test: /\.(s*)css$/i,
         use: [
           {

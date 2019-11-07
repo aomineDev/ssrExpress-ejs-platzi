@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import express from 'express';
 import dotenv from 'dotenv';
 import webpack from 'webpack';
@@ -5,7 +6,7 @@ import webpack from 'webpack';
 dotenv.config();
 
 const ENV = process.env.NODE_ENV;
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 

@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.dev.config.js",
-    "server": "json-server ./initialState.json --port 3001",
+    "serve": "nodemon src/server/index.js --exact babel-node",
     "build": "webpack --mode production",
-    "now-build": "npm run build",
-    "start:dev": "nodemon src/server/index.js --exact babel-node"
+    "now-build": "npm run build"
   },
   "keywords": [],
   "author": "aomine- Code",
@@ -16,6 +15,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "history": "^4.10.1",
     "md5": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
