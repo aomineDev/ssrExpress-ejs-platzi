@@ -14,8 +14,8 @@ const app = express();
 app.use(express.static(`${__dirname}/public`));
 
 if (ENV === 'development') {
-  console.log('Loading dev enviroment');
-  const webpackConfig = require('../../webpack.config');
+  console.log(`Loading ${ENV} enviroment`);
+  const webpackConfig = require('../../webpack.dev.config');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const compiler = webpack(webpackConfig);
@@ -31,6 +31,7 @@ if (ENV === 'development') {
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
 } else {
+  console.log(`Loading ${ENV} enviroment`);
   app.use(helmet());
   app.use(helmet.permittedCrossDomainPolicies());
   app.disable('x-powered-by');

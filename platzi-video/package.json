@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/server/index.js --exact babel-node",
-    "serve": "node src/server/index.js",
+    "serve": "set NODE_ENV=production&& node src/server/index.js",
     "build": "set NODE_ENV=production&& webpack",
     "now-build": "npm run build"
   },

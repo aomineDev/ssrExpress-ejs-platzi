@@ -1,33 +1,25 @@
+const dotenv = require('dotenv');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const dotenv = require('dotenv');
 
 dotenv.config();
 
-const isProd = process.env.NODE_ENV === 'production';
-
 module.exports = {
-  devtool: isProd ? 'hidden-source-map' : 'cheap-source-map',
+  devtool: 'cheap-source-map',
   mode: process.env.NODE_ENV,
   entry: {
     app: path.resolve(__dirname, 'src/frontend/index.js'),
   },
   output: {
-    path: isProd ? path.join(process.cwd(), './src/server/public') : '/',
+    path: '/',
     publicPath: '/',
-    filename: isProd ? 'js/[name]-[hash].js' : 'js/[name].js',
+    filename: 'js/[name].js',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
   optimization: {
-    minimize: true,
-    minimizer: isProd ? [new TerserPlugin()] : [],
     splitChunks: {
       chunks: 'async',
       name: true,
@@ -37,7 +29,7 @@ module.exports = {
           chunks: 'all',
           reuseExistingChunk: true,
           priority: 1,
-          filename: isProd ? 'js/vendor-[hash].js' : 'js/vendor.js',
+          filename: 'js/vendor.js',
           enforce: true,
           test(module, chunks) {
             const name = module.nameForCondition && module.nameForCondition();
@@ -62,7 +54,6 @@ module.exports = {
           },
           'css-loader',
           'sass-loader',
-          'postcss-loader',
         ],
       },
       {
@@ -78,20 +69,8 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [
-          autoprefixer,
-        ],
-      },
-    }),
     new MiniCssExtractPlugin({
-      filename: isProd ? 'css/styles-[hash].css' : 'css/styles.css',
+      filename: 'css/styles.css',
     }),
-    isProd ? new CompressionPlugin({
-      test: /\.js$|\.css$/i,
-      filename: '[path].gz[query]',
-    }) : false,
-    isProd ? new ManifestPlugin() : false,
   ],
 };

@@ -1,8 +1,24 @@
+import dotenv from 'dotenv';
 import getManifest from '../getManifest';
 
-const files = getManifest();
+dotenv.config();
 
-console.log(files);
+const assets = {
+  css: '',
+  js: '',
+  vendor: '',
+};
+
+if (process.env.NODE_ENV === 'production') {
+  const files = getManifest();
+  assets.css = files['app.css'];
+  assets.js = files['app.js'];
+  assets.vendor = files['vendors.js'];
+} else {
+  assets.css = '/css/styles.css';
+  assets.js = '/js/app.js';
+  assets.vendor = '/js/vendor.js';
+}
 
 const render = (html, preloadedState) => {
   return (`
@@ -14,7 +30,7 @@ const render = (html, preloadedState) => {
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Platzi Video</title>
         <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="${assets.css}">
       </head>
       <body>
         <div id="app">${html}</div>
@@ -26,8 +42,8 @@ const render = (html, preloadedState) => {
       '\\u003c',
     )}
         </script>
-        <script src="js/app.js"></script>
-        <script src="js/vendor.js"></script>
+        <script src="${assets.js}"></script>
+        <script src="${assets.vendor}"></script>
       </body>
     </html>
   `);
