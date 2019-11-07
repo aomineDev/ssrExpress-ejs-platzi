@@ -10,8 +10,9 @@
 	text-shadow: 0 0 2px $blue;
 }
 body {
-	font-family: $muli;
 	color: $light;
+	background-color :#834DFB;
+	font-family: $muli;
 	@extend %scroll;
 }
 
