@@ -1,28 +1,22 @@
-// Lib
 @import './lib/base-colors';
 @import './lib/variables';
 @import './lib/mixins-media';
 @import './lib/mixins';
 @import './lib/placeholders';
 
-
-// General
 @import './global/reset';
 @import './global/general';
 @import './global/class';
 
-// Main components
 @import './components/Carousel.scss';
 @import './components/CarouselItem.scss';
 
-// Layout
 @import './Layout/Header.scss';
 @import './Layout/Branch.scss';
 @import './Layout/Search.scss';
 @import './Layout/Categories.scss';
 @import './Layout/Footer.scss';
 
-// Pages
 @import './pages/login';
 @import './pages/signin';
 @import './pages/notFound';

@@ -1,22 +1,35 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   entry: {
-    app: path.resolve(__dirname, 'src/index.js'),
+    app: path.resolve(__dirname, 'src/frontend/index.js'),
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: '/',
     publicPath: '/',
-    filename: 'js/[name].[hash].js',
+    filename: 'js/[name].js',
   },
-  devServer: {
-    historyApiFallback: true,
-    port: 3000,
-    open: true,
-    hot: true,
+  optimization: {
+    splitChunks: {
+      chunks: 'async',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          chunks: 'all',
+          reuseExistingChunk: true,
+          priority: 1,
+          filename: 'assets/vendor.js',
+          enforce: true,
+          test(module, chunks) {
+            const name = module.nameForCondition && module.nameForCondition();
+            return chunks.some((chunk) => chunk.name !== 'vendors' && /[\\/]node_modules[\\/]/.test(name));
+          },
+        },
+      },
+    },
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -53,9 +66,5 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public/index.html'),
-      favicon: path.resolve(__dirname, 'public/favicon.ico'),
-    }),
   ],
 };
