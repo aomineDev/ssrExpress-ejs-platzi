@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 import express from 'express';
+import helmet from 'helmet';
 import dotenv from 'dotenv';
 import webpack from 'webpack';
 import main from './main';
@@ -10,6 +11,7 @@ const ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+app.use(express.static(`${__dirname}/public`));
 
 if (ENV === 'development') {
   console.log('Loading dev enviroment');
@@ -28,6 +30,10 @@ if (ENV === 'development') {
   };
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
+} else {
+  app.use(helmet());
+  app.use(helmet.permittedCrossDomainPolicies());
+  app.disable('x-powered-by');
 }
 
 app.get('*', main);
