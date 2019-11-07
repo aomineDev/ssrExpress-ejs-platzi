@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import Routes from '../frontend/routes/serverRoutes';
-import Layout from '../frontend/Layout/Layout';
-import reducer from '../frontend/reducers';
-import initialState from '../frontend/initialState';
-import render from './render';
+import Routes from '../../frontend/routes/serverRoutes';
+import Layout from '../../frontend/Layout/Layout';
+import reducer from '../../frontend/reducers';
+import initialState from '../../frontend/initialState';
+import render from '../render';
 
 const main = (req, res, next) => {
   try {

@@ -1,3 +1,9 @@
+import getManifest from '../getManifest';
+
+const files = getManifest();
+
+console.log(files);
+
 const render = (html, preloadedState) => {
   return (`
     <!DOCTYPE html>

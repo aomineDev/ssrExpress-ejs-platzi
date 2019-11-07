@@ -3,7 +3,7 @@ import express from 'express';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import webpack from 'webpack';
-import main from './main';
+import main from './app';
 
 dotenv.config();
 

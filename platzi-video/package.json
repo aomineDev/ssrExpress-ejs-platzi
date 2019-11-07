@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/server/index.js --exact babel-node",
-    "build": "webpack --mode production",
+    "serve": "node src/server/index.js",
+    "build": "set NODE_ENV=production&& webpack",
     "now-build": "npm run build"
   },
   "keywords": [],
@@ -38,6 +39,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
+    "compression-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "eslint": "^6.2.2",
     "eslint-config-airbnb": "^18.0.1",
@@ -55,11 +57,13 @@
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.3.1",
     "style-loader": "^1.0.0",
+    "terser-webpack-plugin": "^2.2.1",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.8.0",
-    "webpack-hot-middleware": "^2.25.0"
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-manifest-plugin": "^2.2.0"
   }
 }
